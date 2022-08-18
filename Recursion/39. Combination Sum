@@ -1,0 +1,35 @@
+import java.util.*;
+class Solution {
+    public List<List<Integer>> combinationSum(int[] candidates, int target) {
+        List<List<Integer>> resultlist = new ArrayList<>();
+        combi(0, target, candidates, resultlist, new ArrayList<>());
+        return resultlist;
+    }
+    static void combi(int i, int target, int[] nums,List<List<Integer>> resultlist, List<Integer> ds){
+        //base case
+        //agar index end(nums.length) tak chala jaye and target humara zero hojaye mtlb ek answer milgya hai
+        //answers ke combination ko hum ek arraylist me store karlenge.
+        if(i == nums.length){
+            if(target == 0){
+                //answers ke combination ko hum ek arraylist me store karlenge.
+                resultlist.add(new ArrayList<>(ds));
+            }
+            return;
+        }
+        
+        //Now pick and notpick condition will come
+        //notice we can pick same number unlimited times.
+        
+        //pick--
+        if(target>=nums[i]){
+            ds.add(nums[i]);
+            //function call kro pr index ko increase nhi krna jb pick kr rhe h to
+            combi(i, target-nums[i], nums,resultlist,ds);
+            ds.remove(ds.size()-1);
+        }
+        
+        //not pick
+        combi(i+1, target, nums, resultlist, ds);
+        
+    }
+}
