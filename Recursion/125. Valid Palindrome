@@ -1,0 +1,15 @@
+class Solution {
+    public boolean isPalindrome(String s) {
+        if(s.isEmpty()){
+            return true;
+        }
+         s = s.replaceAll("[^a-zA-Z0-9]", "");
+         return pal(s);
+    }
+    static boolean pal(String s){
+        StringBuilder sb = new StringBuilder(s);
+        sb.reverse();
+        String str = sb.toString();
+        return str.equalsIgnoreCase(s);
+    }
+}
