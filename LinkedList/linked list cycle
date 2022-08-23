@@ -1,0 +1,18 @@
+ //The fast and slow pointer approach. It follows the fact if any two bodies moving with different speeds will meet each other if the path is circular
+ 
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+    
+        ListNode fast = head;// a temporary node which is pointing to the head of LL
+        ListNode slow = head;
+        
+        while(fast!=null && fast.next!=null){
+            fast = fast.next.next;
+            slow = slow.next;
+            if(fast==slow){
+                return true;
+            }
+        }
+        return false;  
+    }
+}
