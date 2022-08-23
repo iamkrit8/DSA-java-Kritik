@@ -1,0 +1,10 @@
+class Solution {
+    public void deleteNode(ListNode node) {
+    //we have given a node for eg if we have input as - [1,2,3,4] & node = 3, output - [1,2,4]
+    //so first of all we need to change the original value of a node by its next value and then we nee dto chnge the refernece from 
+    //node.next to node.next.next
+    
+        node.val =node.next.val;
+        node.next = node.next.next;
+    }
+}
