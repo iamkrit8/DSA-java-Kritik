@@ -1,0 +1,16 @@
+https://leetcode.com/problems/happy-number/
+class Solution {
+    public boolean isHappy(int n) {
+        if (n > 5) {
+            int sum = 0;
+            while (n > 0) {
+                int reminder = n % 10;
+                n = n / 10;
+                sum += reminder*reminder;
+            }
+            return isHappy(sum);
+        }
+        if(n==1)return true;
+        else return false;
+    }
+}
