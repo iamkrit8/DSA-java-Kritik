@@ -1,0 +1,23 @@
+class Solution {
+    public int countElements(int[] nums) {
+        //we can clearly do it using simple iteration--
+        //Time - O(n)
+        int n=nums.length;
+        int max=Integer.MIN_VALUE;
+        int min=Integer.MAX_VALUE;
+        
+        for(int z:nums)
+        {
+            max=Math.max(max,z);
+            min=Math.min(min,z);
+        }
+        
+        int count=0;
+        for(int z:nums)
+        {
+            if(z>min && z<max)
+                count++;
+        }
+        return count;   
+    }
+}
