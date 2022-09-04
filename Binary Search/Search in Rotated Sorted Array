@@ -1,0 +1,61 @@
+class Solution {
+    public int search(int[] nums, int target) {
+       if (nums == null || nums.length == 0)return -1;
+
+        int piv = pivot(nums);
+        if(piv == -1){
+            return Binarysearch(nums, target, 0, nums.length-1);
+        }
+        if(nums[piv]==target)return piv;
+        
+        if(nums[0]<=target){
+            return Binarysearch(nums, target, 0, piv-1);
+        }else{
+            return Binarysearch(nums, target, piv+1, nums.length-1);
+        }
+    }
+    //We will just find pivot element and we will search in botgh half 
+    //first- from start-pivot
+    //second from pivot-end
+    
+    //hence lets find pivot first--
+    static int pivot(int[] nums){
+        int start = 0;
+        int end = nums.length-1;
+        
+        while(start<=end){
+            int mid = start + (end-start)/2; 
+            if(mid < end && nums[mid]>nums[mid+1]){
+                return mid;
+            }
+            if(mid>start && nums[mid]<nums[mid-1])return mid-1;
+            if(nums[start]>=nums[mid]){
+                //then just search in left array for pivot--
+                end = mid-1;
+            }
+            else{
+                //then just search in right array for pivot--
+                start = mid + 1;
+            }  
+        }
+        return -1;
+    }
+    //we will also need binary search for searching now
+    static int Binarysearch(int[] nums, int target, int start, int end) {
+        while(start<=end){
+            int mid = start + (end-start)/2;
+            if(target<nums[mid]){
+                //element will be in left side of mid hence--
+                end  = mid-1;
+            }
+            else if(target>nums[mid]){
+                //element wil be at right
+                start = mid + 1;
+            }
+            else{
+                return mid;
+            }
+        }
+        return -1;
+    }
+}
