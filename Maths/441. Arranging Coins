@@ -1,0 +1,13 @@
+    public int arrangeCoins(int n) {
+        /* We figured it out that sum of each elements of each stairs < = n
+        hence,
+        K*(K+1)/2 <= n
+        K*(K+1) <= 2n
+        K^2 + K <= 2n
+        K^2 + K - 2n <= 0
+        k = sqrt(2n + 1/4) - 1/2
+        */
+        return (int)(Math.sqrt(2*(long)n + 0.25) - 0.5);
+         
+    }
+}
