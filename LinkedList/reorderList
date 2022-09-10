@@ -1,0 +1,53 @@
+class Solution {
+    public void reorderList(ListNode head) {
+        if(head==null||head.next==null) return;
+        ListNode mid = middle(head);
+        ListNode headSecond = reverseList(mid);
+        ListNode headFirst = head;
+        while(headFirst != null && headSecond != null){
+        //we just need to create a temporary pointer which can point to original list.
+        //firsthalf--
+        ListNode temp = headFirst.next;
+        headFirst.next = headSecond;
+        headFirst = temp;
+        //second half imilarly
+        temp = headSecond.next;
+        headSecond.next = headFirst;
+        headSecond = temp;
+        }
+        if(headFirst != null){
+          headFirst.next = null; 
+        }
+ 
+    }
+    static ListNode middle(ListNode head){
+         ListNode slow = head;
+         ListNode fast = head;
+         
+         while(fast!=null && fast.next!=null){
+             slow = slow.next;
+             fast = fast.next.next;
+         }
+         return slow;
+     }
+     
+     static ListNode reverseList(ListNode head){
+         if(head==null || head.next==null){
+            return head;
+        }
+         
+         ListNode prev = null;
+         ListNode present = head;
+         ListNode next = present.next;
+         
+         while(present != null){
+             present.next = prev;
+             prev = present;
+             present = next;
+             if(next != null){
+                 next = next.next;
+             }
+         }
+         return prev;
+     }
+}
