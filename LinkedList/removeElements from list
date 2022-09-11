@@ -1,0 +1,20 @@
+class Solution {
+    public ListNode removeElements(ListNode head, int val) {
+      //condition where first node is the node we have to remove--
+        while(head!=null && head.val == val){
+            head = head.next;
+        }
+        //Note: we are using while since the number can be repetetive. if we need to check only one occurence we could have used if.
+        
+    //else-
+        ListNode current = head;
+        while(current != null && current.next != null){
+            if(current.next.val == val){
+                current.next = current.next.next;
+            }else{
+                current = current.next;
+            }
+        }
+        return head;
+     }
+}
