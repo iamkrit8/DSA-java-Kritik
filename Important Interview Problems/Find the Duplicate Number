@@ -1,0 +1,27 @@
+//most optimized--
+class Solution {
+    public int findDuplicate(int[] nums) {
+        boolean[] arr = new boolean[nums.length];
+        for(int i=0;i<nums.length;i++){
+            if(arr[nums[i]]==true)
+                return nums[i];
+            else
+                arr[nums[i]] = true;
+        }
+        return -1;
+    }
+}
+//using hashSet
+import java.util.*;
+class Solution {
+    public int findDuplicate(int[] nums) {
+        HashSet<Integer> hs = new HashSet<>(); 
+        int ans = 0;
+        for(int i = 0 ; i < nums.length; i++){
+            if(!hs.add(nums[i])){
+                ans = nums[i];
+            }
+        }
+        return ans;
+    }
+}
