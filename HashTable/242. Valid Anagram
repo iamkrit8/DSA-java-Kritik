@@ -1,0 +1,28 @@
+class Solution {
+    public boolean isAnagram(String s, String t) {
+        HashMap<Character, Integer> map = new HashMap<>();
+        int sL = s.length();
+        int tL = t.length();
+        if(sL!=tL)return false;
+        for(int i = 0; i<sL; i++){
+            map.put(s.charAt(i), map.getOrDefault(s.charAt(i),0)+1);
+        }
+        for(int j = 0; j<tL; j++){
+            char ch = t.charAt(j);
+            //if map me already frequency hai kisi character ki to usko hume decrease krna hai else agar frequency nhi hai to false return krenge.. 
+            // agar frequency 1 hai to seedha remove krdenge map se hum, but agar kuchh aur ha to frequency kam krenge uski by 1
+            if(map.get(ch)!=null){
+                if(map.get(ch)==1){
+                    map.remove(ch);
+                }else{
+                    map.put(ch,map.get(ch)-1);
+                }
+                
+            }
+            else{
+                return false;
+            }
+        }
+        return map.isEmpty();    
+    }
+}
