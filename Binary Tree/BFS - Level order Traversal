@@ -1,3 +1,54 @@
+//BFS explaination--
+import java.util.*;
+class Solution {
+    public List<List<Integer>> levelOrder(TreeNode root) {
+        List<List<Integer>> res = new ArrayList<>();
+        Traversal(root, res);
+        return res;
+    }
+    static List<List<Integer>> Traversal(TreeNode root, List<List<Integer>> res){
+        if(root == null){
+            return res;
+        }
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+
+        //we will loop through tyhe queue--
+        while(!q.isEmpty()){
+            TreeNode currNode = q.remove();
+
+            //agar null node bahar nikli to teen cases banenge--
+            //1. - next line print hogi  2. agar ye null last hai queue ka to break hojayega loop and if aur bhi elements hai to again null ko queue me add krna hoga...
+            if(currNode == null){
+                System.out.println();
+                if(q.isEmpty()){
+                    break;
+                }else{
+                    q.add(null);
+                }
+            }
+
+            //agar numeric node bahar nikli hai to--
+            //1. hum us node ki value print karenge
+            //2. uske left and right node ko check krenge ki null hai ki nhi
+            //3. uske left and right node ko queue me wps add krenge..
+            else{
+                System.out.print(currNode.val + " ");
+                if(currNode.left != null){
+                    q.add(currNode.left);
+                }
+                if(currNode.right != null){
+                    q.add(currNode.right);
+                }
+            }
+
+        }
+       
+
+    }
+}
+//Now leetcode-- question--
 class Solution {
     public List<List<Integer>> levelOrder(TreeNode root) {
         Queue<TreeNode> que = new LinkedList<>();
